@@ -1,0 +1,14 @@
+type Equation{
+  _id: ID!
+  tex: String!
+  title: String!
+  tags: [Tag]
+}
+extend type Mutation{
+  createEquation(tex: String!, title: String!, tags: String): Equation
+  updateEquation(equationID: ID!, tex: String!, title: String!, tags: String): Equation
+  deleteEquation(equationID: ID!): Boolean
+}
+extend type Query{
+  equations: [Equation]
+}

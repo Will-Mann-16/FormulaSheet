@@ -1,0 +1,36 @@
+enum Difficulty{
+    EASY
+    MEDIUM
+    HARD
+    EXTENSION
+}
+type Question {
+    _id: ID!
+    text: String!
+    answer: String
+    metadata: String
+    method: String
+    tags: [Tag]
+    marks: Int
+    difficulty: Difficulty
+}
+enum TagType {
+  PRIMARY
+  SECONDARY
+  TERTIARY
+}
+type Tag {
+  type: TagType
+  text: String
+}
+type Mutation {
+    createQuestion(text: String!, answer: String, metadata: String, method: String, tags: String, marks: Int, difficulty: String): Question
+    updateQuestion(questionID: ID!, text: String!, answer: String, metadata: String, method: String, tags: String, marks: Int, difficulty: String): Question
+    deleteQuestion(questionID: ID!): Boolean
+}
+type Query {
+    questions: [Question]
+    tags: String
+    question(questionID: ID!): Question
+    questionByTag(tags: String, count: Int): [Question]
+  }
